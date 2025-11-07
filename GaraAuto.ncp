@@ -1,0 +1,106 @@
+<Project>
+  <Name>Untitled</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Untitled</Name>
+    <Language>Java</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>GaraAuto</Name>
+        <Access>Public</Access>
+        <Location left="268" top="161" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void main(String[] args)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Thread</Name>
+        <Access>Public</Access>
+        <Location left="1282" top="246" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void start()</Member>
+        <Member type="Method">public void join()</Member>
+        <Member type="Method">public void sleep(long millis)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Auto</Name>
+        <Access>Public</Access>
+        <Location left="716" top="449" />
+        <Size width="421" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private String nome</Member>
+        <Member type="Field">private double metri</Member>
+        <Member type="Field">private double velocita</Member>
+        <Member type="Field">private double distanzaTotale</Member>
+        <Member type="Field">private Giudice giudice</Member>
+        <Member type="Method">public void run()</Member>
+        <Member type="Constructor">public Auto(String nome, double velocita, double distanzaTotale, Giudice giudice)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>Runnable</Name>
+        <Access>Public</Access>
+        <Location left="941" top="127" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void run()</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>Giudice</Name>
+        <Access>Public</Access>
+        <Location left="625" top="161" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private boolean garaIniziata</Member>
+        <Member type="Field">private boolean garaFinita</Member>
+        <Member type="Field">private List&lt;String&gt; classifica</Member>
+        <Member type="Method">public void daiIlVia()</Member>
+        <Member type="Method">public void attendiPartenza()</Member>
+        <Member type="Method">public void registraAvvio(String nomeAuto)</Member>
+        <Member type="Method">public boolean garaFinita()</Member>
+        <Member type="Method">public void stampaClassifica()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>uses
+</Text>
+        <Location left="500" top="236" />
+        <Size width="50" height="50" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>1...*
+</Text>
+        <Location left="489" top="377" />
+        <Size width="67" height="50" />
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Dependency" first="0" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="0" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Dependency" first="3" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="2" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
