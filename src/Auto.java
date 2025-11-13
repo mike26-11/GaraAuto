@@ -1,3 +1,7 @@
+/**
+ * Rappresenta un'auto che partecipa alla gara.
+ * Ogni auto è eseguita in un thread separato e avanza in base alla sua velocità.
+ */
 public class Auto implements Runnable {
     private String nome;
     private double metri = 0;
@@ -5,6 +9,14 @@ public class Auto implements Runnable {
     private double distanzaTotale;
     private Giudice giudice;
 
+    /**
+     * Costruttore per creare un'auto partecipante alla gara.
+     *
+     * @param nome nome dell'auto
+     * @param velocita velocità in metri al secondo
+     * @param distanzaTotale distanza totale da percorrere
+     * @param giudice giudice che gestisce la gara
+     */
     public Auto(String nome, double velocita, double distanzaTotale, Giudice giudice) {
         this.nome = nome;
         this.velocita = velocita;
@@ -12,6 +24,12 @@ public class Auto implements Runnable {
         this.giudice = giudice;
     }
 
+    /**
+     * Metodo eseguito dal thread dell'auto.
+     * Attende il via del giudice, poi ogni secondo aumenta i metri percorsi
+     * in base alla velocità. Quando raggiunge la distanza totale,
+     * comunica l'arrivo al giudice.
+     */
     @Override
     public void run() {
         try {

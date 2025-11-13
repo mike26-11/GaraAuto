@@ -1,7 +1,11 @@
+/**
+ * Classe principale che avvia la simulazione della gara di auto.
+ * Crea il giudice e le auto, gestisce iil conto alla rovescia e dirige l'inizio della gara.
+ */
 public class GaraAuto {
     public static void main(String[] args) {
         Giudice giudice = new Giudice();
-        double distanzaTotale = 200;
+        double distanzaTotale = 150;
 
         Thread a1 = new Thread(new Auto("Ferrari", 25, distanzaTotale, giudice));
         Thread a2 = new Thread(new Auto("Lamborghini", 22, distanzaTotale, giudice));
