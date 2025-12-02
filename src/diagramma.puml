@@ -1,0 +1,63 @@
+@startuml
+left to right direction
+
+actor Giocatore
+actor Giudice
+actor Auto
+
+' ==========================
+'   Giocatore - Use Cases
+' ==========================
+
+usecase "Avvia la gara"
+usecase "Visualizza countdown"
+usecase "Visualizza svolgimento gara"
+usecase "Visualizza classifica finale"
+usecase "Legge classifica da file"
+
+Giocatore --> "Avvia la gara"
+Giocatore --> "Visualizza classifica finale"
+Giocatore --> "Legge classifica da file"
+
+"Avvia la gara" --> "Visualizza countdown" : <<include>>
+"Avvia la gara" --> "Visualizza svolgimento gara" : <<include>>
+
+' ==========================
+'   Giudice - Use Cases
+' ==========================
+
+usecase "Attende momento di dare il via"
+usecase "Dà il via alla gara"
+usecase "Sincronizza auto\n(wait/notifyAll)"
+usecase "Registra arrivo auto"
+usecase "Determina vincitore"
+usecase "Genera classifica finale"
+usecase "Salva classifica su file"
+
+Giudice --> "Attende momento di dare il via"
+Giudice --> "Dà il via alla gara"
+Giudice --> "Registra arrivo auto"
+Giudice --> "Genera classifica finale"
+
+"Dà il via alla gara" --> "Sincronizza auto\n(wait/notifyAll)" : <<include>>
+"Registra arrivo auto" --> "Determina vincitore" : <<include>>
+"Genera classifica finale" --> "Salva classifica su file" : <<include>>
+
+' ==========================
+'   Auto - Use Cases
+' ==========================
+
+usecase "Attende il via"
+usecase "Avanza"
+usecase "Segnala avanzamento"
+usecase "Raggiunge il traguardo"
+usecase "Segnala arrivo al giudice"
+
+Auto --> "Attende il via"
+Auto --> "Avanza"
+Auto --> "Segnala avanzamento"
+Auto --> "Raggiunge il traguardo"
+
+"Raggiunge il traguardo" --> "Segnala arrivo al giudice" : <<include>>
+
+@enduml
