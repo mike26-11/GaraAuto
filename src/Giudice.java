@@ -6,11 +6,19 @@ import java.util.List;
  * Controlla la sincronizzazione tra i thread delle auto.
  */
 public class Giudice {
+
     private boolean garaIniziata = false;
     private boolean garaFinita = false;
     private final List<String> classifica = new ArrayList<>();
+    private GestoreFile gestoreFile;
 
-
+    /**
+     * Costruttore del giudice.
+     * @param gestoreFile oggetto per la gestione del file classifica
+     */
+    public Giudice(GestoreFile gestoreFile) {
+        this.gestoreFile = gestoreFile;
+    }
 
     /**
      * Da il via alla gara e notifica tutte le auto che possono partire.
@@ -20,7 +28,6 @@ public class Giudice {
         garaIniziata = true;
         notifyAll();
     }
-
 
     /**
      * Fa attendere le auto finchè la gara non è iniziata.
@@ -36,7 +43,6 @@ public class Giudice {
         }
     }
 
-
     /**
      * Registra l'arrivo di un'auto nella classifica
      * Se è la prima, questa viene dichiarata vincitrice.
@@ -45,12 +51,15 @@ public class Giudice {
      */
     public synchronized void registraArrivo(String nomeAuto) {
         classifica.add(nomeAuto);
+
         if (classifica.size() == 1) {
             System.out.println("Vincitore: " + nomeAuto);
         }
+
         if (classifica.size() >= 3) { // se tutte le auto arrivate
             garaFinita = true;
             stampaClassifica();
+            salvaSuFile();
         }
     }
 
@@ -62,15 +71,25 @@ public class Giudice {
         return garaFinita;
     }
 
-
     /**
      * Stampa la classifica finale delle auto.
-     * Viene hciamato automaticamente dal giudice quando la gara termina.
+     * Viene chiamato automaticamente dal giudice quando la gara termina.
      */
     public synchronized void stampaClassifica() {
         System.out.println("\n CLASSIFICA FINALE");
         for (int i = 0; i < classifica.size(); i++) {
             System.out.println((i + 1) + " posto → " + classifica.get(i));
         }
+    }
+
+    /**
+     * Salva la classifica nel file tramite GestoreFile.
+     */
+    private void salvaSuFile() {
+        String testo = "CLASSIFICA FINALE\n";
+        for (int i = 0; i < classifica.size(); i++) {
+            testo += (i + 1) + " posto -> " + classifica.get(i) + "\n";
+        }
+        gestoreFile.scriviFile(testo);
     }
 }

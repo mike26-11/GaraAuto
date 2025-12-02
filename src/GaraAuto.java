@@ -1,10 +1,12 @@
 /**
  * Classe principale che avvia la simulazione della gara di auto.
- * Crea il giudice e le auto, gestisce iil conto alla rovescia e dirige l'inizio della gara.
+ * Crea il giudice e le auto, gestisce il conto alla rovescia e dirige l'inizio della gara.
  */
 public class GaraAuto {
     public static void main(String[] args) {
-        Giudice giudice = new Giudice();
+
+        GestoreFile gf = new GestoreFile("classifica.txt");
+        Giudice giudice = new Giudice(gf);
         double distanzaTotale = 150;
 
         Thread a1 = new Thread(new Auto("Ferrari", 25, distanzaTotale, giudice));
@@ -23,13 +25,15 @@ public class GaraAuto {
 
             giudice.daiIlVia();
 
-            // Attende che tutti i thread finiscano
             a1.join();
             a2.join();
             a3.join();
 
             System.out.println("\n Gara terminata!");
-            // Il giudice ha già stampato la classifica
+
+            // Lettura file classifica
+            gf.leggiFile();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
